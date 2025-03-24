@@ -1,9 +1,11 @@
-import addProperty from "@/app/actions/AddProperty";
+import updateProperty from "@/app/actions/updateProperty";
 
-const PropertyAddFrom = () => {
+const PropertyEditForm = ({ property }) => {
+  const updatePropertyById = updateProperty.bind(null, property._id);
+
   return (
-    <form action={addProperty}>
-      <h2 className="text-3xl text-center font-semibold mb-6">Add Property</h2>
+    <form action={updatePropertyById}>
+      <h2 className="text-3xl text-center font-semibold mb-6">Edit Property</h2>
 
       <div className="mb-4">
         <label htmlFor="type" className="block text-gray-700 font-bold mb-2">
@@ -13,6 +15,7 @@ const PropertyAddFrom = () => {
           id="type"
           name="type"
           className="border rounded w-full py-2 px-3"
+          defaultValue={property.type}
           required
         >
           <option value="Apartment">Apartment</option>
@@ -35,6 +38,7 @@ const PropertyAddFrom = () => {
           className="border rounded w-full py-2 px-3 mb-2"
           placeholder="eg. Beautiful Apartment In Miami"
           required
+          defaultValue={property.name}
         />
       </div>
       <div className="mb-4">
@@ -48,6 +52,7 @@ const PropertyAddFrom = () => {
           id="description"
           name="description"
           className="border rounded w-full py-2 px-3"
+          defaultValue={property.description}
           rows="4"
           placeholder="Add an optional description of your property"
         ></textarea>
@@ -61,6 +66,7 @@ const PropertyAddFrom = () => {
           name="location.street"
           className="border rounded w-full py-2 px-3 mb-2"
           placeholder="Street"
+          defaultValue={property.location.street}
         />
         <input
           type="text"
@@ -68,6 +74,7 @@ const PropertyAddFrom = () => {
           name="location.city"
           className="border rounded w-full py-2 px-3 mb-2"
           placeholder="City"
+          defaultValue={property.location.city}
           required
         />
         <input
@@ -77,6 +84,7 @@ const PropertyAddFrom = () => {
           className="border rounded w-full py-2 px-3 mb-2"
           placeholder="State"
           required
+          defaultValue={property.location.state}
         />
         <input
           type="text"
@@ -84,6 +92,7 @@ const PropertyAddFrom = () => {
           name="location.zipcode"
           className="border rounded w-full py-2 px-3 mb-2"
           placeholder="Zipcode"
+          defaultValue={property.location.zipcode}
         />
       </div>
 
@@ -96,6 +105,7 @@ const PropertyAddFrom = () => {
             type="number"
             id="beds"
             name="beds"
+            defaultValue={property.beds}
             className="border rounded w-full py-2 px-3"
             required
           />
@@ -108,6 +118,7 @@ const PropertyAddFrom = () => {
             type="number"
             id="baths"
             name="baths"
+            defaultValue={property.baths}
             className="border rounded w-full py-2 px-3"
             required
           />
@@ -123,6 +134,7 @@ const PropertyAddFrom = () => {
             type="number"
             id="square_feet"
             name="square_feet"
+            defaultValue={property.square_feet}
             className="border rounded w-full py-2 px-3"
             required
           />
@@ -137,6 +149,7 @@ const PropertyAddFrom = () => {
               type="checkbox"
               id="amenity_wifi"
               name="amenities"
+              defaultChecked={property.amenities.includes("Wifi")}
               value="Wifi"
               className="mr-2"
             />
@@ -148,6 +161,7 @@ const PropertyAddFrom = () => {
               id="amenity_kitchen"
               name="amenities"
               value="Full kitchen"
+              defaultChecked={property.amenities.includes("Full kitchen")}
               className="mr-2"
             />
             <label htmlFor="amenity_kitchen">Full kitchen</label>
@@ -159,6 +173,7 @@ const PropertyAddFrom = () => {
               name="amenities"
               value="Washer & Dryer"
               className="mr-2"
+              defaultChecked={property.amenities.includes("Washer & Dryer")}
             />
             <label htmlFor="amenity_washer_dryer">Washer & Dryer</label>
           </div>
@@ -167,6 +182,7 @@ const PropertyAddFrom = () => {
               type="checkbox"
               id="amenity_free_parking"
               name="amenities"
+              defaultChecked={property.amenities.includes("Free Parking")}
               value="Free Parking"
               className="mr-2"
             />
@@ -177,6 +193,7 @@ const PropertyAddFrom = () => {
               type="checkbox"
               id="amenity_pool"
               name="amenities"
+              defaultChecked={property.amenities.includes("Swimming Pool")}
               value="Swimming Pool"
               className="mr-2"
             />
@@ -189,6 +206,7 @@ const PropertyAddFrom = () => {
               name="amenities"
               value="Hot Tub"
               className="mr-2"
+              defaultChecked={property.amenities.includes("Hot Tub")}
             />
             <label htmlFor="amenity_hot_tub">Hot Tub</label>
           </div>
@@ -197,6 +215,7 @@ const PropertyAddFrom = () => {
               type="checkbox"
               id="amenity_24_7_security"
               name="amenities"
+              defaultChecked={property.amenities.includes("24/7 Security")}
               value="24/7 Security"
               className="mr-2"
             />
@@ -208,6 +227,9 @@ const PropertyAddFrom = () => {
               id="amenity_wheelchair_accessible"
               name="amenities"
               value="Wheelchair Accessible"
+              defaultChecked={property.amenities.includes(
+                "Wheelchair Accessible"
+              )}
               className="mr-2"
             />
             <label htmlFor="amenity_wheelchair_accessible">
@@ -220,6 +242,7 @@ const PropertyAddFrom = () => {
               id="amenity_elevator_access"
               name="amenities"
               value="Elevator Access"
+              defaultChecked={property.amenities.includes("Elevator Access")}
               className="mr-2"
             />
             <label htmlFor="amenity_elevator_access">Elevator Access</label>
@@ -229,6 +252,7 @@ const PropertyAddFrom = () => {
               type="checkbox"
               id="amenity_dishwasher"
               name="amenities"
+              defaultChecked={property.amenities.includes("Dishwasher")}
               value="Dishwasher"
               className="mr-2"
             />
@@ -240,6 +264,7 @@ const PropertyAddFrom = () => {
               id="amenity_gym_fitness_center"
               name="amenities"
               value="Gym/Fitness Center"
+              defaultChecked={property.amenities.includes("Gym/Fitness Center")}
               className="mr-2"
             />
             <label htmlFor="amenity_gym_fitness_center">
@@ -251,6 +276,7 @@ const PropertyAddFrom = () => {
               type="checkbox"
               id="amenity_air_conditioning"
               name="amenities"
+              defaultChecked={property.amenities.includes("Air Conditioning")}
               value="Air Conditioning"
               className="mr-2"
             />
@@ -262,6 +288,7 @@ const PropertyAddFrom = () => {
               id="amenity_balcony_patio"
               name="amenities"
               value="Balcony/Patio"
+              defaultChecked={property.amenities.includes("Balcony/Patio")}
               className="mr-2"
             />
             <label htmlFor="amenity_balcony_patio">Balcony/Patio</label>
@@ -272,6 +299,7 @@ const PropertyAddFrom = () => {
               id="amenity_smart_tv"
               name="amenities"
               value="Smart TV"
+              defaultChecked={property.amenities.includes("Smart TV")}
               className="mr-2"
             />
             <label htmlFor="amenity_smart_tv">Smart TV</label>
@@ -281,6 +309,7 @@ const PropertyAddFrom = () => {
               type="checkbox"
               id="amenity_coffee_maker"
               name="amenities"
+              defaultChecked={property.amenities.includes("Coffee Maker")}
               value="Coffee Maker"
               className="mr-2"
             />
@@ -301,6 +330,7 @@ const PropertyAddFrom = () => {
             <input
               type="number"
               id="weekly_rate"
+              defaultValue={property.rates.weekly}
               name="rates.weekly"
               className="border rounded w-full py-2 px-3"
             />
@@ -312,6 +342,7 @@ const PropertyAddFrom = () => {
             <input
               type="number"
               id="monthly_rate"
+              defaultValue={property.rates.monthly}
               name="rates.monthly"
               className="border rounded w-full py-2 px-3"
             />
@@ -323,6 +354,7 @@ const PropertyAddFrom = () => {
             <input
               type="number"
               id="nightly_rate"
+              defaultValue={property.rates.nightly}
               name="rates.nightly"
               className="border rounded w-full py-2 px-3"
             />
@@ -342,6 +374,7 @@ const PropertyAddFrom = () => {
           id="seller_name"
           name="seller_info.name"
           className="border rounded w-full py-2 px-3"
+          defaultValue={property.seller_info.name}
           placeholder="Name"
         />
       </div>
@@ -357,6 +390,7 @@ const PropertyAddFrom = () => {
           id="seller_email"
           name="seller_info.email"
           className="border rounded w-full py-2 px-3"
+          defaultValue={property.seller_info.email}
           placeholder="Email address"
           required
         />
@@ -372,36 +406,21 @@ const PropertyAddFrom = () => {
           type="tel"
           id="seller_phone"
           name="seller_info.phone"
+          defaultValue={property.seller_info.phone}
           className="border rounded w-full py-2 px-3"
           placeholder="Phone"
         />
       </div>
-
-      <div className="mb-4">
-        <label htmlFor="images" className="block text-gray-700 font-bold mb-2">
-          Images (Select up to 4 images)
-        </label>
-        <input
-          type="file"
-          id="images"
-          name="images"
-          className="border rounded w-full py-2 px-3"
-          accept="image/*"
-          multiple
-          required
-        />
-      </div>
-
       <div>
         <button
           className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
           type="submit"
         >
-          Add Property
+          Update Property
         </button>
       </div>
     </form>
   );
 };
 
-export default PropertyAddFrom;
+export default PropertyEditForm;
